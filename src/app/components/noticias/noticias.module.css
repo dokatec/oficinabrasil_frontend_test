@@ -1,0 +1,16 @@
+.card_element {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+.card {
+  width: 100%;
+  height: auto;
+  background-color: #27293d;
+  border-radius: 10px;
+  border: 1px solid #343549;
+  margin: 0 20px;
+  font-weight: 400;
+}
