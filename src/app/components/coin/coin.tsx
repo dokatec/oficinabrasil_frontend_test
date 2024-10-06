@@ -6,18 +6,18 @@ import {
   Title,
   Tooltip,
   Legend,
+  Colors,
 } from "chart.js/auto";
 import { useEffect, useState } from "react";
-import { Bar, Line, Bubble, Doughnut } from "react-chartjs-2";
-import axios from "axios";
+import { Bar, Line, Doughnut, Scatter, PolarArea } from "react-chartjs-2";
 import styles from "./coin.module.css";
 
-ChartJS.register(CategoryScale, LinearScale, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, Title, Tooltip, Legend, Colors);
 
 const options = {
   responsive: true,
   maintainAspectRatio: false,
-  type: "line",
+  type: "Bar",
   scales: {
     y: {
       beginAtZero: true,
@@ -26,32 +26,63 @@ const options = {
 };
 
 const Coins = () => {
-  const [platforms, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const coin = "bitcoin";
+
+  const fetchData = async () => {
+    const response = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=" +
+        coin +
+        "&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true&precision=7"
+    );
+    const data = await response.json();
+    const array = Object.entries(data).map(([key, value]) => ({
+      name: key,
+      ...value,
+    }));
+    setData(array);
+    console.log(array);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://api.coingecko.com/api/v3/coins/bitcoin"
-        );
-        setData(response.data);
-        console.log(response.data);
-      } catch (error) {}
-    };
     fetchData();
   }, []);
 
   const configChart = {
-    labels: platforms.map((platform) => platform[0].id),
+    labels: data.map((item) => item.name),
     datasets: [
       {
-        label: "CriptMoeda",
-        data: platforms.map((platform) => platform.id),
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
+        label: "Preço (USD)",
+        data: data.map((item) => item.usd),
+        backgroundColor: ["lightGreen"],
+        borderColor: ["rgb(153, 102, 255)"],
+        borderWidth: 1,
+      },
+      {
+        label: "Market Cap (USD)",
+        data: data.map((item) => item.usd_market_cap),
+        backgroundColor: ["lightBlue"],
+        borderColor: ["rgb(153, 102, 255)"],
+        borderWidth: 1,
+      },
+      {
+        label: "Volume 24h (USD)",
+        data: data.map((item) => item.usd_24h_vol),
+        backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgb(153, 102, 255)"],
+        borderWidth: 1,
+      },
+      {
+        label: "Change 24h (USD)",
+        data: data.map((item) => item.usd_24h_change),
+        backgroundColor: ["rgba(255, 205, 86, 0.2)"],
+        borderColor: ["rgb(153, 102, 255)"],
+        borderWidth: 1,
+      },
+      {
+        label: "Last Updated At (USD)",
+        data: data.map((item) => item.last_updated_at),
+        backgroundColor: ["rgba(153, 102, 255, 0.2)"],
         borderColor: ["rgb(153, 102, 255)"],
         borderWidth: 1,
       },
