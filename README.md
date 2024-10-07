@@ -47,6 +47,15 @@ Criação de um dashboard interativo que consome dados de varias APIs públicas,
 
    ```
 
+5. **Acessar a aplicação pelo localhost:**
+
+   ```bash
+   http://localhost:3000
+
+   Por favor verificar caso a porta 3000 esteja em uso com outra aplicação o proprio CLI irá informar a porta padrão.
+
+   ```   
+
 5. **Link com os Ids das criptmoedas para testar a aplicação de criptomoedas:**
 
    ```bash
