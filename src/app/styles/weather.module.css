@@ -131,3 +131,81 @@
   display: flex;
   align-items: center;
 }
+
+@media (max-width: 480px) {
+  .input_container {
+    width: 90%;
+    flex-direction: column;
+  }
+  .input_form {
+    width: 100%;
+    margin: 0;
+  }
+  .btn_form {
+    width: 100%;
+    margin: 2% 1%;
+  }
+  .card {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .card_weather {
+    width: 100%;
+  }
+  .input_form[type="text"] {
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .input_container {
+    width: 90%;
+    flex-direction: column;
+  }
+  .input_form {
+    width: 100%;
+    margin: 0;
+  }
+  .btn_form {
+    width: 100%;
+    margin: 2% 1%;
+  }
+  .card {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .card_weather {
+    width: 100%;
+  }
+  .input_form[type="text"] {
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .input_container {
+    width: 90%;
+    flex-direction: column;
+  }
+  .input_form {
+    width: 100%;
+    margin: 0;
+  }
+  .btn_form {
+    width: 100%;
+    margin: 2% 1%;
+  }
+  .card {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .card_weather {
+    width: 100%;
+  }
+  .input_form[type="text"] {
+    padding-left: 0;
+  }
+}

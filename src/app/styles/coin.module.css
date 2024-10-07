@@ -74,3 +74,55 @@
 .btn_form:hover {
   background-color: #63689d;
 }
+
+@media (max-width: 480px) {
+  .container_form {
+    width: 80%;
+    flex-direction: column;
+  }
+  .input_form {
+    width: 100%;
+    margin-top: 2% 0;
+  }
+  .input_form[type="text"] {
+    padding-left: 0;
+  }
+  .btn_form {
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .container_form {
+    width: 80%;
+    flex-direction: column;
+  }
+  .input_form {
+    width: 100%;
+    margin-top: 4% 0;
+  }
+  .input_form[type="text"] {
+    padding-left: 0;
+  }
+  .btn_form {
+    width: 100%;
+    margin: 2% 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+}
+.container_form {
+  width: 80%;
+  margin-top: 4%;
+}
+.input_form {
+  width: 100%;
+}
+.input_form[type="text"] {
+  padding-left: 0;
+}
+.btn_form {
+  width: 100%;
+  margin: 2% 0;
+}

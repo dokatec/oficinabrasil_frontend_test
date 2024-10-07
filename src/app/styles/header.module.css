@@ -23,3 +23,33 @@
 .link:hover {
   color: #9ca5ff;
 }
+
+@media (max-width: 480px) {
+  .header {
+    justify-content: center;
+  }
+  .header h1 {
+    display: none;
+  }
+  .link {
+    margin: 0;
+    padding: 0 10px;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .header {
+    justify-content: center;
+  }
+  .header h1 {
+    display: none;
+  }
+  .link {
+    margin: 0;
+    padding: 0 10px;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}

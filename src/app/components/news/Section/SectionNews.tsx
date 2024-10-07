@@ -13,7 +13,9 @@ const SectionNews: React.FC<SessionFilterProps> = ({ onSelectSession }) => {
 
   return (
     <div className={styles.select_container}>
-      <label htmlFor="session-select">Selecione a Sessão:</label>
+      <label className={styles.label} htmlFor="session-select">
+        Selecione a Sessão:
+      </label>
       <select
         className={styles.select_form}
         id="session-select"
