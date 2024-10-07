@@ -1,5 +1,5 @@
-import Header from "../../components/header/header";
-import New from "../../components/news/news/news";
+import Header from "../../components/Header/Header";
+import New from "../../components/News/News/News";
 
 const NyTimes = () => {
   return (

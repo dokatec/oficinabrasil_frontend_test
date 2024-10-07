@@ -1,9 +1,6 @@
-`use client`;
-
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import styles from "./weather_hours.module.css";
-import { Line } from "react-chartjs-2";
+import React from "react";
+import { Line, Bar } from "react-chartjs-2";
+import styles from "../../styles/weatherChart.module.css";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -25,27 +22,12 @@ ChartJS.register(
   Legend
 );
 
-const API_KEY = "1d64d398eb194396a0e164855240510";
+interface WeatherChartProps {
+  forecast: any;
+}
 
-export default function Page() {
-  const [forecast, setForecast] = useState(null);
-
-  async function fetchData() {
-    try {
-      const response = await axios.get(
-        `https://api.weatherapi.com/v1/forecast.json?q=sao%20paulo&days=1&key=${API_KEY}`
-      );
-      setForecast(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  function getFormattedDate(date: any) {
+const WeatherChart: React.FC<WeatherChartProps> = ({ forecast }) => {
+  function getFormattedDate(date: string) {
     const options = {
       weekday: "long",
       hour: "numeric",
@@ -56,7 +38,7 @@ export default function Page() {
 
   const chartData = {
     labels: forecast
-      ? forecast.forecast.forecastday[0].hour.map((hour: { time: any }) =>
+      ? forecast.forecastday[0].hour.map((hour: { time: any }) =>
           getFormattedDate(hour.time)
         )
       : [],
@@ -64,12 +46,10 @@ export default function Page() {
       {
         label: "Temperatura (°C)",
         data: forecast
-          ? forecast.forecast.forecastday[0].hour.map(
-              (hour: any) => hour.temp_c
-            )
+          ? forecast.forecastday[0].hour.map((hour: any) => hour.temp_c)
           : [],
         borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        backgroundColor: "#63689d",
       },
     ],
   };
@@ -78,7 +58,7 @@ export default function Page() {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "top" as const,
       },
       title: {
         display: true,
@@ -88,15 +68,21 @@ export default function Page() {
   };
 
   return (
-    <div className={styles.div}>
+    <div className={styles.chart_card}>
       {forecast ? (
         <div>
           <h2>Previsão Horária para Hoje</h2>
-          <Line data={chartData} options={options} />
+          <Bar
+            data={chartData}
+            options={options}
+            className={styles.chart_bar}
+          />
         </div>
       ) : (
         <p>Loading weather data...</p>
       )}
     </div>
   );
-}
+};
+
+export default WeatherChart;

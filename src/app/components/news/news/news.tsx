@@ -1,36 +1,40 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./news.module.css";
-import Pagination from "../../pagination/pagination";
+import Pagination from "../../Pagination/pagination";
+import SectionNews from "../Section/SectionNews";
+import styles from "../../../styles/news.module.css";
 
 const API_KEY = "ypNzPlbsiKYnuYA5ANKk0FOGKXFTgHWP";
 
-function News() {
-  const [data, setData] = useState([]);
+const News: React.FC = () => {
+  const [data, setData] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [session, setSession] = useState("world");
   const perPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${API_KEY}`
+          `https://api.nytimes.com/svc/topstories/v2/${session}.json?api-key=${API_KEY}`
         );
         setData(response.data.results);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [session]);
 
   const totalPages = Math.ceil(data.length / perPage);
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const handleSessionChange = (newSession: string) => {
+    setSession(newSession);
   };
 
   const paginatedData = data.slice(
@@ -40,7 +44,9 @@ function News() {
 
   return (
     <section className={styles.card_element}>
-      <h2>Artigos mais populares</h2>
+      <SectionNews onSelectSession={handleSessionChange} />
+      <h2>Mais populares</h2>
+
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
@@ -59,6 +65,6 @@ function News() {
       </div>
     </section>
   );
-}
+};
 
 export default News;

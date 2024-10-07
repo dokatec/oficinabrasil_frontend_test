@@ -6,7 +6,7 @@
 
 body {
   width: 100%;
-  height: auto;
+  height: 100vh;
   background-color: #1e1e2e;
   color: #fff;
   font-family: "Roboto", sans-serif;
@@ -14,11 +14,6 @@ body {
 
 main {
   width: 100%;
-  height: auto;
+  height: 100vh;
   display: flex;
-}
-
-.main-container {
-  width: 80%;
-  height: auto;
 }

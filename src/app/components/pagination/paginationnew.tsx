@@ -1,8 +1,6 @@
-import styles from "../../styles/pagination.module.css";
-
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
-    <div className={styles.pagination}>
+    <div className="pagination">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}

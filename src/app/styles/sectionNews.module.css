@@ -1,0 +1,33 @@
+.select_container {
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1%;
+}
+
+.select_form {
+  width: 30%;
+  height: 2.5rem;
+  background-color: #27293d;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 1px 1px 1px #343549;
+  margin: 0 1%;
+  transition: 0.6s;
+}
+.select_form:hover {
+  box-shadow: 0px 0px 10px 5px #63689d;
+}
+
+.select_form::placeholder {
+  padding: 10px;
+}
+.select_form[type="text"] {
+  padding-left: 10px;
+}
